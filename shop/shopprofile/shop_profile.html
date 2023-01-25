@@ -1,0 +1,224 @@
+
+<div id="mainheader" class="border-bottom py-3 container">
+  <div class="row w-100">
+    <div class="col-lg-3">
+      <a href="/" class="text-center">
+        <h2>Dokandari</h2>
+      </a>
+    </div>
+    <div class="col-lg-9">
+      <div class="">
+        <form method="post" class="form-inline">
+          <div class="input-group">
+            <input type="text" class="form-control searchbar" name="search" placeholder="Search">
+            <select name="filter" class="form-control filter">
+              <option value="">Filter</option>
+              <option value="market">Market Only</option>
+              <option value="shop">Shops Only</option>
+              <option value="product">Product Only</option>
+            </select>
+          </div>
+          <input type="button" name="search" value="Search" class=" btn-primary btn searchbtn">
+        </form>
+      </div>  
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9" >
+      <div class="p-0 ">
+        <div class="row">
+          <div class="container">
+            <center>
+              <img id="imageResult" ng-if="vm.profilePhoto.path" src="{{ vm.profilePhoto.path }}" alt="Shop Profile" height="200px" class="w-100 rounded">  
+
+              <input ng-if="vm.isOwnShop" id="upload" name="file" type="file" onchange="readURL(this);" accept="image/jpg" class="form-control border-0" required>
+              <label ng-if="vm.isOwnShop" for="upload" class="btn btn-primary" style="padding: 0px 12px;line-height: 0px;"> <i class="fa fa-cloud-upload "></i><small class="">Choose file</small><h6 class=ad>Choose File </h6> </label>
+            </center>
+          </div>
+          <!-- Basic Info -->
+          <div class="col-lg-9">
+            <div class="text-muted">
+              <h4>{{ vm.profileData.shopName }}</h4>
+              <i class="fa fa-map-marker" > {{ vm.profileData.shopAddress }}</i>&nbsp; <br>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="float-left">
+              <div class="">  
+                <i class="fa fa-phone" >  {{ vm.profileData.shopPhone }}</i>&nbsp; <br>
+                <!-- <div class="rating" ><strong>Shop Rating: &nbsp;</strong><i class="fa fa-star"></i> &nbsp;4.5
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="col-lg-12" ng-if="!vm.isOwnShop" ng-hide="hideFollow">
+    <div class="pull-right">
+      <a class="text-info btn btn-sm btn-primary" ng-if="!vm.alreadyFollowing" id='follow' ng-click="followShop(vm)"><h5><i class="">Follow</i></h5></a>
+      <a class="text-info btn btn-sm btn-primary" ng-if="vm.alreadyFollowing" disabled=1 id='unfollow'><h5><i class="">Following</i></h5></a>
+    </div>
+  </div>
+  <!-- <div class="row" ng-hide="vm.loggedInShopID || vm.loggedInUserID">
+    <div class="col-lg-2 mt-4">
+      <div class="container mt-3 rounded border bg-light py-5">
+        <center>
+          <h3><i class="fa fa-lock"></i></h3>
+          <p>Login to see contact & address details</p>
+          <a href="/#/shoplogin"><button type="button" name="button" class="btn btn-outline-danger">Login</button></a>
+        </center>
+      </div>
+    </div>
+  </div> -->
+  <div class="row"  ng-if="vm.isOwnShop">
+    <div class="container"><hr>
+      <div id="post-button">
+        <div class="float-right">
+          <button type="button"  data-toggle="modal" data-target="#postModal" class="btn btn-warning">Create a notice</button>
+          <a href="/#/post"><button type="button" name="create" class="btn btn-primary">Post a new product</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="mostlikedproduct1">
+    <div class="container">
+      <div class="float-right">
+        <!-- <a href="#"><h4 class="v">Show More</h4></a> -->
+      </div>
+      <h2 class="c">Shop's Products</h2>
+      <hr>
+      <div class="container">
+        <div class="container" style="        margin-left: -15px;">  
+          <div class="owl-carousel owl-theme">
+            <div class="item" ng-repeat="product in vm.profileData.products">
+              <a href="/#/shopprofile/{{ product.shopId }}">
+
+                <img src="{{ product.file1.path }}" alt="{{ product.file1.originalname }}">
+                <div class="card">
+                  <p class="price">Rs: {{ product.price }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     
+  </div> 
+</div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" style="width: 623px;height: 378px;" aria-hidden="true">
+
+  <div class="modal-dialog" role="document" style="padding-left: 10px;"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create a notice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span> 
+          </button>
+        </div>
+        <form method="post" ng-submit='createNotice()'>
+          <div class="modal-body">
+            <!-- Follower 1 -->
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="noticeTitle" name="noticeTitle" placeholder="Notice Title" required>
+              <textarea name="details" rows="8" ng-model="details" class="form-control mt-3" id="details" placeholder="Details" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="float-right">
+              <input class="btn btn-info" type="submit" id="submit" value="Post">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              <!-- <button type="button" name="create" id="notice" class="btn btn-info">Post</button> -->
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+
+<script>
+  function redimensionnement(){ 
+    var $image = $('img.fullbg');
+    var image_width = $image.width(); 
+    var image_height = $image.height();         
+    var over = image_width / image_height; 
+    var under = image_height / image_width;      
+    var body_width = $(window).width(); 
+    var body_height = $(window).height();     
+    if (body_width / body_height >= over) { 
+      $image.css({ 
+        'width': body_width + 'px', 
+        'height': Math.ceil(under * body_width) + 'px', 
+        'left': '0px', 
+        'top': Math.abs((under * body_width) - body_height) / -2 + 'px' 
+      }); 
+    }     
+    else { 
+      $image.css({ 
+        'width': Math.ceil(over * body_height) + 'px', 
+        'height': body_height + 'px', 
+        'top': '0px', 
+        'left': Math.abs((over * body_height) - body_width) / -2 + 'px' 
+      }); 
+    } 
+}     
+$(document).ready(function(){ 
+    redimensionnement();    
+    $(window).resize(function(){ 
+        redimensionnement(); 
+    }); 
+}); 
+</script>
+
+
+
+
+
+
+<!-- SCRIPTS -->
+
+
+<script type="text/javascript">
+
+  var input = document.getElementById( 'upload' );
+  var infoArea = document.getElementById( 'upload-label' );
+
+  input.addEventListener( 'change', showFileName );
+  function showFileName( event ) {
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+  // infoArea.textContent = 'File name: ' + fileName;
+  }
+  
+  function readURL(input) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          $('#imageResult')
+              .attr('src', e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+      console.log(angular.element(this).scope())
+      angular.element(document.getElementById('upload')).scope().changeProfilePhoto(input.files[0]);
+    }
+  }
+  
+  $(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+      margin:50,
+      responsive:{
+        0:{items:1},
+        600:{items:3},
+        1000:{items:5}
+      }
+    });
+  });
+</script>
+ 

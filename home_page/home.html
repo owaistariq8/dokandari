@@ -1,0 +1,217 @@
+
+<div id="topnav">
+  <div class="row" ng-hide="vm.$rootScope.isLoggedIn">
+    <div class="col-sm-6" style="font-size: 17px;">
+      <a href="/#/shopsignup">&nbsp; Signup a shop &nbsp;</a> |
+      <a href="/#/shoplogin">&nbsp; Shop Login &nbsp;</a>
+    </div>
+    <div class="col-sm-6"style="font-size: 17px;text-align: right;">
+      <a href="/#/userlogin">&nbsp; User Login &nbsp;</a> |
+      <a href="/#/signup">&nbsp; User SignUp &nbsp;</a>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.$rootScope.isLoggedIn">
+    <div class="col-sm-6" style="font-size: 17px;">
+    </div>
+    <div class="col-sm-6" style="font-size: 17px;text-align: right;">
+      <a ng-show="vm.userType=='user'" href="/#/userprofile/{{ vm.userId }}">&nbsp; {{ vm.userName }} | &nbsp;</a> 
+      <a ng-show="vm.userType=='shop'" href="/#/shopprofile/{{ vm.shopId }}">&nbsp; {{ vm.userName }} | &nbsp;</a> 
+      <a href="/#/logout" ng-click="vm.$rootScope.logOut();vm.$state.reload()">&nbsp; Logout &nbsp;</a>
+    </div>
+  </div>
+</div>
+<!-- !TopNav -->
+
+
+
+<!-- Main Header -->
+<div id="mainheader" class="border-bottom py-3">
+  <div class="row w-100">
+    <div class="col-lg-3">
+      <a href="/" class="text-center">
+        <h2 class="abc" style="margin-left: 101px;">Dokandari</h2>
+      </a>
+    </div>
+     <div class="col-lg-9">
+      <div class="">
+        <form method="post" class="form-inline">
+           <div class="input-group">
+            <input type="text" class="form-control searchbar" name="search" placeholder="Search">
+            <select name="filter" class="form-control filter" >
+              <option value="">Filter</option>
+              <option value="market">Market Only</option>
+              <option value="shop">Shops Only</option>
+              <option value="product">Product Only</option>
+            </select>
+          </div>
+          <input type="button" name="search" value="Search" class="btn-primary btn searchbtn">
+          <span 
+          class="mx-auto">
+           </span>
+        </form>
+      </div>
+    </div> 
+  </div>
+</div>
+<!-- Banner -->
+<div id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+        .mySlides {display:none;}
+        </style>
+ 
+        <div class="w3-container">
+          <h2 style=" color: #2673bf!important;">Ad will go here</h2>
+          
+        </div>
+
+        <div class="w3-content w3-section" style="max-width:500px">
+          <img class="mySlides w3-animate-left" src="./uploads/ad1.jpg" style="width:100%">
+          <img class="mySlides w3-animate-right" src="./uploads/ad4.jpg" style="width:100%">
+          <img class="mySlides w3-animate-left" src="./uploads/ad00.jpg" style="width:100%">
+          <img class="mySlides w3-animate-right" src="./uploads/aqw.jpg" style="width:100%">
+        </div>
+
+        <script>
+          var myIndex = 0;
+          carousel();
+
+          function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+              x[i].style.display = "none";  
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}    
+            x[myIndex-1].style.display = "block";  
+            setTimeout(carousel, 2500);    
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <!--  Markets --> 
+ 
+  <!-- Most Rated Store  -->
+  <div id="mostratedstore">
+    <div class="container">
+      <div class="float-right">
+        <!-- <a href="#"><h4 class="v" >Show More</h4></a> -->
+      </div>
+      <h2 class="b">Newly Added Shops</h2>
+      <hr>
+      <div class="col-sm-6" style="    padding-left: 0px;" >
+        <div class="container" style="        margin-left: -15px;">  
+          <div class="owl-carousel owl-theme">
+            <div class="item" ng-repeat="shop in vm.shops" >
+              <a href="/#/shopprofile/{{ shop.id }}">
+                <img src="{{ shop.filePath.path }}" alt="{{ shop.filePath.originalname }}" style="width: 190px;"> 
+                <div class="card">
+                  <p class="price">{{ shop.fullname }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     
+  </div> 
+  <!-- Most Rated Store  -->
+
+  <!-- Most Like Products  -->
+  <div id="mostlikedproduct">
+    <div class="container">
+      <div class="float-right">
+        <!-- <a href="#"><h4 class="v">Show More</h4></a> -->
+      </div>
+      <h2 class="c">Newly Added Products</h2>
+      <hr>
+      <div class="container">
+        <div class="container" style="        margin-left: -15px;">  
+          <div class="owl-carousel owl-theme">
+            <div class="item" ng-repeat="product in vm.products">
+              <a href="/#/shopprofile/{{ product.shopId }}">
+                <img src="{{ product.file1.path }}" alt="{{ product.file1.originalname }}">
+                <div class="card">
+                  <p class="price">Rs: {{ product.price }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div> 
+  </div>
+ <!-- Most Like Products  -->
+
+
+
+  <div id="mostlikedproduct1">
+    <div class="container">
+      <div class="float-right">
+        <!-- <a href="#"><h4 class="v">Show More</h4></a> -->
+      </div>
+      <h2 class="c">Recommended Products</h2>
+      <hr>
+      <div class="container">
+        <div class="container" style="        margin-left: -15px;">  
+          <div class="owl-carousel owl-theme">
+            <div class="item" ng-repeat="product in vm.recomendedProducts">
+              <a href="/#/shopprofile/{{ product.shopId }}">
+
+                <img src="{{ product.file1.path }}" alt="{{ product.file1.originalname }}">
+                <div class="card">
+                  <p class="price">Rs: {{ product.price }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     
+  </div> 
+  <!-- Most Like Products  -->
+
+
+
+  <div id="mostlikedproduct2">
+    <div class="container">
+      <div class="float-right">
+        <!-- <a href="#"><h4 class="v">Show More</h4></a> -->
+        </div>
+      <h2 class="c">Recommended Shops</h2>
+      <hr>
+      <div class="col-sm-6" style="    padding-left: 0px;" >
+        <div class="container" style="        margin-left: -15px;">  
+          <div class="owl-carousel owl-theme">
+            <div class="item" ng-repeat="shop in vm.recomendedShops">
+              <img src="{{ shop.filePath.path }}" alt="{{ shop.filePath.originalname }}" style="width: 190px;"> 
+              <div class="card">
+                <p class="price">{{ shop.fullname }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     
+  </div> 
+ <!-- Most Like Products  -->
+
+<script>
+  $(document).ready(function(){
+    $(document).find(".owl-carousel").owlCarousel({
+      margin:50,
+      responsive:{
+        0:{items:1},
+        600:{items:3},
+        1000:{items:5}
+      }
+    });
+  });
+</script>

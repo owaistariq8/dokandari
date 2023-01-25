@@ -1,0 +1,113 @@
+
+
+<div id="mainheader" class="border-bottom py-3 container">
+  <div class="row w-100">
+    <div class="col-lg-3">
+      <a href="/" class="text-center">
+        <h2>Dokandari</h2>
+      </a>
+    </div>
+    <div class="col-lg-9">
+      <div class="">
+        <form method="post" class="form-inline">
+          <div class="input-group">
+            <input type="text" class="form-control searchbar" name="search" placeholder="Search">
+            <select name="filter" class="form-control filter">
+              <option value="">Filter</option>
+              <option value="shop">Shops Only</option>
+              <option value="product">Product Only</option>
+            </select>
+          </div>
+          <input type="button" name="search" value="Search" class=" btn-primary btn searchbtn">
+        </form>
+      </div>  
+    </div>
+  </div>
+  <!-- Profile -->
+  <div id="profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <h3>Personal Information</h3>
+          <div class="form-group">
+            <p><strong>User Name</strong> : {{ vm.profile.username }}</p>
+            <p><strong>Email</strong> : {{ vm.profile.email }}</p>
+            <p><strong>Phone</strong> : {{ vm.profile.phone_number }}</p>
+            <p><strong>Shop Followed</strong> : {{ vm.followedShopCount }}</p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="image">
+            <center>
+              <img id="imageResult" ng-if="vm.profilePhoto.path" src="{{ vm.profilePhoto.path }}" alt="Shop Profile" height="200px" class="w-100 rounded">  
+              <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1"> -->
+              <input ng-if="vm.isOwnUser" id="upload" name="file" type="file" onchange="readURL(this);" accept="image/jpg" class="form-control border-0" style="height: 39px;margin-top: 4px;line-height: 23px;">
+              <label ng-if="vm.isOwnUser" id="upload-button-label" for="upload" class="btn btn-primary" style="padding: 0px 12px;line-height: 0px;"> <i class="fa fa-cloud-upload upload-button"></i><small class="upload-button">Choose file</small><h6 class=ad>Choose File </h6> </label>
+            </center>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="latestshop-posts">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6" style="color: #2673bf;">
+          <h3>Latest Posts - Shops you follow</h3>
+        </div>
+        <div class="col-sm-6">
+          <div class="float-right">
+            <!-- <a href="#"><h4>Show More</h4></a> -->
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="container">
+        <div class="owl-carousel owl-theme">
+          <div class="item" ng-repeat="shop in vm.followedShops" >
+            <a href="/#/shopprofile/{{ shop.id }}">
+              <img src="{{ shop.filePath.path }}" alt="{{ shop.filePath.originalname }}" style="width: 190px;"> 
+              <div class="card">
+                <p class="price">{{ shop.fullname }}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+
+<script>
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel({
+    loop:true,
+    margin:10,
+    responsive:{
+      0:{items:1},
+      600:{items:3},
+      1000:{items:5}
+    }
+  });
+
+});
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        $('#imageResult')
+            .attr('src', e.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
+    console.log(angular.element(this).scope())
+    angular.element(document.getElementById('upload')).scope().changeProfilePhoto(input.files[0]);
+  }
+}
+</script>
+

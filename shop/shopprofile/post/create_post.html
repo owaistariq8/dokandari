@@ -1,0 +1,174 @@
+
+<form method="post" ng-submit='addProduct()'>
+
+  <div class="">
+    <div class="card-title ml-3 mt-2">
+      <h3 class="q">Post Product</h3>
+      <center>
+        <div class="row mb-3" id="post-img">
+          <div class="col-sm-12 col-md-4 col-lg-2 m-2">
+            <div class="circle">
+              <!-- User Profile Image -->
+              <img class="profile-pic upload-button" ng-model="image1" id="file1" src="/uploads/upload.jpg">
+              <!-- Default Image -->
+              <!-- <i class="fa fa-user fa-5x"></i> -->
+            </div>
+            <div class="p-image">
+              <input class="file-upload file1" onchange="angular.element(this).scope().handleFile(event.target.files[0],1)" ng-model="file1" name="file0" type="file" accept="image/*"/>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-2 m-2">
+            <div class="circle">
+              <!-- User Profile Image -->
+              <img class="profile-pic upload-button" ng-model="image2" id="file2" src="/uploads/upload.jpg">
+              <!-- Default Image -->
+              <!-- <i class="fa fa-user fa-5x"></i> -->
+            </div>
+            <div class="p-image">
+              <input class="file-upload file2" onchange="angular.element(this).scope().handleFile(event.target.files[0],2)" ng-model="file2" name="file1" type="file" accept="image/*"/>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-2 m-2">
+            <div class="circle">
+              <!-- User Profile Image -->
+              <img class="profile-pic upload-button"  ng-model="image3" id="file3" src="/uploads/upload.jpg">
+              <!-- Default Image -->
+              <!-- <i class="fa fa-user fa-5x"></i> -->
+            </div>
+            <div class="p-image">
+              <input class="file-upload file3" onchange="angular.element(this).scope().handleFile(event.target.files[0],3)" ng-model="file3" name="file2" type="file" accept="image/*"/>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-2 m-2">
+            <div class="circle">
+              <!-- User Profile Image -->
+              <img class="profile-pic upload-button" ng-model="image4" id="file4" src="/uploads/upload.jpg">
+              <!-- Default Image -->
+              <!-- <i class="fa fa-user fa-5x"></i> -->
+            </div>
+            <div class="p-image">
+              <input class="file-upload file4" onchange="angular.element(this).scope().handleFile(event.target.files[0],4)" ng-model="file4"  name="file3" type="file" accept="image/*"/>
+            </div>
+          </div>
+        </div>
+      </center>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group mt-2">
+            <label for="condition"><h3 class="w">Condition:</h3></label>&nbsp;&nbsp;
+            <input type="radio" style="margin: -8px 0 0;color: #2673bf;font-size: 24px;" ng-model="condition" name="condition" value="Old"><lable style="color: #2673bf;font-size: 24px;">Old</lable> 
+            <input type="radio" style="margin: -8px 0 0;color: #2673bf;font-size: 24px;" ng-model="condition"  name="condition" value="New"style="color: #2673bf;font-size: 24px;"><lable style="color: #2673bf;font-size: 24px;">New</lable>
+          </div>
+          <div class="form-group">
+            <label for="name" style="color: #2673bf;font-size: 24px;">Name</label>
+            <input type="text" name="name" ng-model="name" class="form-control rounded">
+          </div>
+          <div class="form-group">
+            <label for="price" style="color: #2673bf;font-size: 24px;">Price</label>
+            <input type="text" name="price" ng-model="price" class="form-control rounded">
+          </div>
+          <label for="description"style="color: #2673bf;font-size: 24px;">Description</label>
+          <textarea name="description" ng-model="description" name="description" rows="3" class="form-control rounded"></textarea>
+
+          <div class="d-flex flex-row-reverse bd-highlight">
+            <input class="btn btn-primary" type="submit" id="submit" value="Post">
+          </div>
+        </div>
+        <div class="col-md-6" id="char">
+        </div>  
+      </div>
+    </div>
+  </div>
+  <hr>
+</form>
+
+<script>
+$(document).ready(function() {
+  // Images
+  var readURL1 = function(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#file1').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  var readURL2 = function(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#file2').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  var readURL3 = function(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#file3').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  var readURL4 = function(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#file4').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  $(".file1").on('change', function(){
+      readURL1(this);
+  });
+  $(".file2").on('change', function(){
+      readURL2(this);
+  });
+  $(".file3").on('change', function(){
+      readURL3(this);
+  });
+  $(".file4").on('change', function(){
+      readURL4(this);
+  });
+  $(".upload-button").on('click', function() {
+    className = this.id;
+     switch (className) {
+       case 'file1':
+         $(".file1").click();
+         break;
+       case 'file2':
+         $(".file2").click();
+         break;
+       case 'file3':
+         $(".file3").click();
+         break;
+       case 'file4':
+         $(".file4").click();
+         break;
+     }
+  });
+  // !Images
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

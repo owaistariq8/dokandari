@@ -1,0 +1,121 @@
+
+ <div class="container  ">
+  <!-- <div class="card border-0"> -->
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6" style="padding-top: 33px;">
+         <!-- <img class=" img-fluid p-2" src="./uploads/signup.jpg" alt="Responsive image"> --> 
+        <img class=" img-fluid p-2" src="./uploads/signup.jpg" alt="Responsive image">
+      </div>
+      <div class="col-md-6 mt-2">
+        <div class="card"  style="-moz-box-shadow:    inset 0 0 10px #878585;
+                                     -webkit-box-shadow: inset 0 0 10px #878585;
+                                     box-shadow:         inset 0 0 10px #878585; 
+                                     padding-top: 0px; padding-bottom: 0px; ">
+            <div class="card-heading px-3 border-bottom">
+              <p><h2 style="color: #5296d9;"><center>Dokandari</center></h2></p>
+            </div>
+          <div class="card-body">
+            <div class="d-flex justify-content-center" style="padding-left:205px">
+              <large class="text-muted"><b><h3 style="color: #5296d9;">User Signup </h3></b></large>
+            </div>
+
+            <form method="post" id="details" ng-submit="formSubmit()" class="form">
+              <!-- full name -->
+              <div style="padding-left: 16px;padding-right: 16px;">
+                <div class="input-group mb-3 mt-3">
+                  <input type="text" class="form-control" ng-model="username" placeholder="User Name" required=""/>	
+                   
+                  <div class="input-group-addon">
+                    <span class="input-group-text  bg-white"> <i class="fa fa-user"></i> </span>
+                  </div>
+                </div>
+                  <!-- mail -->
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" ng-model="email" placeholder="Email" required=""/>	
+                 
+                  <div class="input-group-addon">
+                   <span class="input-group-text  bg-white"> <i class="fa fa-envelope"></i> </span>
+                  </div>
+                </div>
+                <!-- password -->
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" ng-model="password" placeholder="Password" required=""/>	
+                
+                  <div class="input-group-addon">
+                   <span class="input-group-text  bg-white"> <i class="fa fa-lock"></i> </span>
+                  </div>
+                </div>
+                <!-- phone number -->
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" ng-model="phonenumber" placeholder="Phone number" required=""/> 	
+              
+                  <div class="input-group-addon">
+                    <span class="input-group-text  bg-white"> <i class="fa fa-phone"></i> </span>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-header">
+             
+              </div> 
+              <div class="modal-body">
+                <div class="form-group"> 
+                  <div class="d-flex justify-content-center mt-3">
+                    <input class="btn btn-primary btn-block" type="submit" id="submit" value="Sign Up">
+                  </div>
+                  <!--  have account -->
+                  <center class="mt-2">
+                    <p>Have an account?<a href="/#/userlogin" class=" mt-3 ml-1"><b>Log in</b></a></p>
+                  </center>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div><!--row div-->
+      </div>
+    </div><!--card div-->
+  </div> <!--container div-->
+</div>
+
+
+
+
+
+<script>
+  function redimensionnement(){ 
+    var $image = $('img.fullbg');
+    var image_width = $image.width(); 
+    var image_height = $image.height();         
+    var over = image_width / image_height; 
+    var under = image_height / image_width;      
+    var body_width = $(window).width(); 
+    var body_height = $(window).height();     
+    if (body_width / body_height >= over) { 
+      $image.css({ 
+        'width': body_width + 'px', 
+        'height': Math.ceil(under * body_width) + 'px', 
+        'left': '0px', 
+        'top': Math.abs((under * body_width) - body_height) / -2 + 'px' 
+      }); 
+    }     
+    else { 
+      $image.css({ 
+        'width': Math.ceil(over * body_height) + 'px', 
+        'height': body_height + 'px', 
+        'top': '0px', 
+        'left': Math.abs((over * body_height) - body_width) / -2 + 'px' 
+      }); 
+    } 
+}     
+$(document).ready(function(){ 
+    redimensionnement();    
+    $(window).resize(function(){ 
+        redimensionnement(); 
+    }); 
+}); 
+</script>
+
+
+
+

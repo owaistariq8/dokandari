@@ -1,0 +1,262 @@
+<!-- Header -->
+<div id="header" class="border-bottom">
+  <div class="container p-3">
+    <a href="/"><h2>Dokandari</h2></a>
+  </div>
+</div>
+<!-- form -->
+<div class="container mt-5">
+  <form method="post" class="form" ng-submit="formSubmit()" enctype="multipart/form-data">
+    <div class="container">
+      <hr>
+      <h4 style="    font-size: 24.5px;color: #2673bf;">Personal Info</h4>
+      <hr>
+      <div class="container">
+        <div class="container my-4">
+          <div class="form-row">
+            <div class="col-md-12">
+              <label for="name" style="color: #2673bf; font-size: 22px;">Full Name</label>
+              <input type="text" ng-model="name" name="name" id="name" class="form-control" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email" style="color: #2673bf; font-size: 22px;">Email</label>
+                
+                <input type="email" ng-model="email" name="email" id="email" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone" style="color: #2673bf; font-size: 22px;">Phone No.</label>
+                <input type="text" ng-model="phone" name="phone" id="phone" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="pass" style="color: #2673bf; font-size: 22px;">Password</label>
+                <input type="password" ng-model="pass" name="pass" id="pass" class="form-control" required>
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label for="pass-c" style="color: #2673bf; font-size: 22px;">Confirm Password</label>
+                <input type="password" name="pass-c" id="pass-c" class="form-control" required>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <hr>
+      <h4 style="color: #2673bf; font-size: 24.5px;">Market Details</h4>
+      <hr>
+      <div class="container">
+        <div class="container my-4">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="city" style="color: #2673bf;font-size: 24px;">City</label>
+                <input type="text" list="cities" ng-model="city" name="city" id="city" class="form-control" required>
+                <datalist id="cities">
+                  <option value="Karachi">
+                  <option value="Lahore">
+                  <option value="Faisalabad">
+                  <option value="Rawalpindi">
+                  <option value="Gujranwala">
+                  <option value="Peshawar">
+                  <option value="Multan">
+                  <option value="Hyderabad">
+                  <option value="Islamabad">
+                  <option value="Quetta">
+                  <option value="Bahawalpur">
+                  <option value="Sargodha">
+                  <option value="Sialkot">
+                  <option value="Sukkur">
+                  <option value="Larkana">
+                  <option value="Sheikhupura">
+                  <option value="Rahim Yar Khan">
+                  <option value="Jhang">
+                  <option value="Dera Ghazi Khan">
+                  <option value="Gujrat">
+                  <option value="Sahiwal">
+                  <option value="Wah Cantonment">
+                  <option value="Mardan">
+                  <option value="Kasur">
+                  <option value="Okara">
+                  <option value="Mingora">
+                  <option value="Nawabshah">
+                  <option value="Chiniot">
+                  <option value="Kotri">
+                  <option value="Kamoke">
+                  <option value="Hafizabad">
+                  <option value="Sadiqabad">
+                  <option value="Mirpur Khas">
+                  <option value="Burewala">
+                  <option value="Kohat">
+                  <option value="Khanewal">
+                  <option value="Dera Ismail Khan">
+                  <option value="Turbat">
+                  <option value="Muzaffargarh">
+                  <option value="Abbotabad">
+                  <option value="Mandi Bahauddin">
+                  <option value="Shikarpur">
+                  <option value="Jacobabad">
+                  <option value="Jhelum">
+                  <option value="Khanpur">
+                  <option value="Khairpur">
+                  <option value="Khuzdar">
+                  <option value="Pakpattan">
+                  <option value="Hub">
+                  <option value="Daska">
+                  <option value="Gojra">
+                  <option value="Dadu">
+                  <option value="Muridke">
+                  <option value="Bahawalnagar">
+                  <option value="Samundri">
+                  <option value="Tando Allahyar">
+                  <option value="Tando Adam">
+                  <option value="Jaranwala">
+                  <option value="Chishtian">
+                  <option value="Muzaffarabad">
+                  <option value="Attock">
+                  <option value="Vehari">
+                  <option value="Kot Abdul Malik">
+                  <option value="Ferozwala">
+                  <option value="Chakwal">
+                  <option value="Gujranwala Cantonment">
+                  <option value="Kamalia">
+                  <option value="Umerkot">
+                  <option value="Ahmedpur">
+                  <option value="Kot Addu">
+                  <option value="Wazirabad">
+                  <option value="Mansehra">
+                  <option value="Layyah">
+                  <option value="Mirpur">
+                  <option value="Swabi">
+                  <option value="Chaman">
+                  <option value="Taxila">
+                  <option value="Nowshera">
+                  <option value="Khushab">
+                  <option value="Shahdadkot">
+                  <option value="Mianwali">
+                  <option value="Kabal">
+                  <option value="Lodhran">
+                  <option value="Hasilpur">
+                  <option value="Charsadda">
+                  <option value="Bhakkar">
+                  <option value="Badin">
+                  <option value="Arif Wala">
+                  <option value="Ghotki">
+                  <option value="Sambrial">
+                  <option value="Jatoi">
+                  <option value="Haroonabad">
+                  <option value="Daharki">
+                  <option value="Narowal">
+                  <option value="Tando Muhammad Khan">
+                  <option value="Kamber Ali Khan">
+                  <option value="Mirpur Mathelo">
+                  <option value="Kandhkot">
+                  <option value="Bhalwal">
+                </datalist>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="market" style="color: #2673bf;font-size: 24px;">Market</label>
+                <input type="text" list="markets" ng-model="market" name="market" id="market" class="form-control" required>
+                <datalist id="markets">
+                </datalist>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="shoptype" style="color: #2673bf;font-size: 24px;">Select Shop Type</label>
+                <select class="form-control" name="shoptype" ng-model="shoptype" id="shoptype" required>
+                  <option value="Wholeseller">Wholeseller</option>
+                  <option value="Retailer">Retailer</option>
+                  <option value="Retailer+Wholeseller">Both</option>
+                </select>
+                <div class="text-danger" id="shoptype-txt">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container"><hr></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <hr>
+      <h4 style="color: #2673bf; font-size: 24.5px;">Shop Details</h4>
+      <hr>
+      <div class="container">
+        <div class="container my-4">
+          <div class="form-group">
+            <!-- Uploaded image area-->
+            <div class=""><img id="imageResult" style="max-width: 50%;" src="" alt="Shop Profile" height="100px" class="w-100 rounded">
+            </div>
+            <div class=" container text-danger" id="file">
+            </div>
+            <!-- Upload image input-->
+            <div class="input-group mb-3 px-2 py-2 rounded-pill ">
+              <!-- <input type="file" ng-model="file" class="form-control border-0" required class="file-upload" onchange="angular.element(this).scope().handleFile(event.target.files[0])"> -->
+              <input id="upload" ng-model="file" onchange="angular.element(this).scope().handleFile(event.target.files[0])" name="file" type="file" accept="image/jpg" class="form-control border-0" required>
+              <div class="input-group-append">
+                <label for="upload" class="btn btn-primary" style="padding: 0px 12px;line-height: 0px;"> <i class="fa fa-cloud-upload "></i> <small class="">Choose file</small><h6 class=ad>Choose File </h6> </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row mt-4">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="name" style="color: #2673bf;font-size: 24px;">Shop Name</label>
+                <input type="text" ng-model="shopname" name="shopname" id="shopname" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone"style="color: #2673bf;font-size: 24px;">Shop Contact #</label>
+                <input type="text" ng-model="shopphone" name="shopphone" id="shopphone" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="form-row mt-4">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="address"style="color: #2673bf;font-size: 24px;">Shop Address</label>
+                <textarea name="shopaddr" ng-model="shopaddr" rows="2" id="shopaddr" class="form-control" required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-row mt-4">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="time-o"style="color: #2673bf;font-size: 24px;">Opening Time</label>
+                <input type="time" name="time-o" ng-model="opentime" id="opentime" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="time-c"style="color: #2673bf;font-size: 24px;">Closing Time</label>
+                <input type="time" name="time-c" ng-model="closetime" id="closetime" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <div class="container"><hr></div>
+          <div class="btn-next">
+            <input type="submit" name="signup" id="signup" value="Register Shop" class="btn btn-primary">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
